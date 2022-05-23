@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excercise API</title>
+</head>
+
+<body>
+<div class="container-fluid">
+
+  <div class="row align-content-center justify-content-center pt-5">
+
+    <div class="col-4">
+      <input class="form-control mb-3" type="text" autofocus autocorrect="off" autocapitalize="off" spellcheck="false" id="search" placeholder="Artist...">
+    </div>
+
+    <div class="col-4">
+      <select class="form-select mb-3" aria-label="Default select example">
+        <option selected>Open this select menu</option>
+        <option *ngFor="let description of descriptions">
+          {{description}}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-2">
+      <a class="btn btn-secondary mb-3">Search</a>
+    </div>
+  </div>
+
+</div>
+<div class="artist"></div>
+<input type="text" autofocus autocorrect="off" autocapitalize="off" spellcheck="false" id="search" placeholder="Artist...">
+
+
+<div class="card" *ngFor="let description of descriptions">
+<!--  <h4>{{description.name}}</h4>-->
+  <h4>{{description.kind}}</h4>
+</div>
+
+</body>
+</html>
