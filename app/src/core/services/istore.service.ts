@@ -1,20 +1,44 @@
 import { Injectable } from '@angular/core';
 
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
+import {Observable, throwError} from "rxjs";
+import {catchError} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class IstoreService {
 
-  url: string = 'https://itunes.apple.com/search?term=beyonce';//'https://itunes.apple.com/search?Beyonce';
+  // url: string = 'https://reqres.in/api';
+  // url: string = 'https://itunes.apple.com/search?term=beyonce';//'https://itunes.apple.com/search?Beyonce';
+  url: string = 'https://itunes.apple.com/search?term=';
 
   constructor(private http:HttpClient) { }
 
-  public getDescription(){
+  public getDescriptions(){
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
+    // return this.http.get(this.url + '/unknown', {headers});
+    return this.http.get(this.url, {headers}).pipe(catchError(this.handleError));
+  }
 
-    return this.http.get(this.url, {headers});
+  public getDescription = (id: any) => {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(this.url + id, {headers}).pipe(catchError(this.handleError));
+  }
+
+  private handleError(error: HttpErrorResponse){
+    if (error.error instanceof ErrorEvent){
+      console.error("An error ocurred: ", error.error.message);
+    }else{
+      console.error(
+        `Backend error: ${error.status}, `+ `body was: ${error.error}`
+      );
+    }
+    return throwError("Something ocurred, try again later.")
   }
 }
+
+//https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/
+//https://itunes.apple.com/search

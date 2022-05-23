@@ -9,5 +9,4 @@ import {IstoreService} from "../core/services/istore.service";
 })
 export class AppComponent {
   title = 'TRUEXTEND';
-
 }
