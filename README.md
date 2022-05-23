@@ -1,8 +1,8 @@
 # ExcerciseInt_TX
 Web realized with Angular and Bootstrap.
 
-###Components
-- App  
+### Used Components
+- App - main page. 
 - Page - called in the main page.
 
 ### Service
