@@ -9,9 +9,7 @@ import {catchError} from "rxjs/operators";
 })
 export class IstoreService {
 
-  // url: string = 'https://reqres.in/api';
-  // url: string = 'https://itunes.apple.com/search?term=beyonce';//'https://itunes.apple.com/search?Beyonce';
-  url: string = 'https://itunes.apple.com/search?term=';
+  url: string = 'https://itunes.apple.com/search';
 
   constructor(private http:HttpClient) { }
 
@@ -19,13 +17,19 @@ export class IstoreService {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     // return this.http.get(this.url + '/unknown', {headers});
-    return this.http.get(this.url, {headers}).pipe(catchError(this.handleError));
+    return this.http.get(this.url + '?term='+'Jack Johnson', {headers}).pipe(catchError(this.handleError));
   }
 
   public getDescription = (id: any) => {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.get(this.url + id, {headers}).pipe(catchError(this.handleError));
+    return this.http.get(this.url + '?term=' + id, {headers}).pipe(catchError(this.handleError));
+  }
+
+  public getText = (id: any) => {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(this.url + '?term='+ id + '&media=musicVideo', {headers}).pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse){
@@ -39,6 +43,3 @@ export class IstoreService {
     return throwError("Something ocurred, try again later.")
   }
 }
-
-//https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/
-//https://itunes.apple.com/search

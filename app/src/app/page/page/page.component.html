@@ -10,28 +10,29 @@
 
     <div class="col-4">
       <select class="form-select mb-3" aria-label="Default select example">
-        <option selected>Open this select menu</option>
-        <option *ngFor="let description of descriptions">
-          {{description.artistName}}
+        <option selected *ngFor="let opt of options">
+          {{opt.option}}
         </option>
       </select>
     </div>
 
     <div class="col-2">
-<!--      <a class="btn btn-secondary mb-3" (click)="OnSubscription(description.id)">Search</a>-->
       <a class="btn btn-secondary mb-3" (click)="OnSubscription(search.value)">Search</a>
 
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      {{container}}
     </div>
   </div>
 
 </div>
 
-<div class="card" *ngFor="let description of descriptions">
-<!--  <h4>{{description.name}}</h4>-->
-  <h4>{{description.kind}}</h4>
-</div>
-
-
+<!--<div class="card" *ngFor="let description of descriptions">-->
+<!--  <h4>{{description.kind}}</h4>-->
+<!--</div>-->
 <!---->
-<p>Value: {{ search.value }}</p>
+<!--<p>Value: {{ search.value }}</p>-->
+
 </body>
